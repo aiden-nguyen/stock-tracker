@@ -7,15 +7,11 @@ const StockPage = () => {
   return (
     <div className="background">
       <NavBar />
-      <div className=""
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "44%",
-          transform: "translate(-50%, -50%)",
-        }}
+      <div className="flex justify-center"
       >
+        <div className="mt7-l mt7-m mt6 pt0-ns pt5 w-60-l w-80 h-100-ns">
         <Stock />
+        </div>
       </div>
       <style>{`
         .background {

@@ -21,10 +21,13 @@ class Stock extends Component<MyProps, MyState> {
     this.state = {
       stockSymbol: window.location.pathname.split("/")[2],
       exists: true,
-        chartOptions: {
-            chart: {
-                redraw: true
-          },
+      chartOptions: {
+        chart: {
+          redraw: true,
+          borderColor: "#022C39",
+          borderWidth: 2,
+          borderRadius: 15,
+        },
         title: {
           text: "",
         },
@@ -50,6 +53,22 @@ class Stock extends Component<MyProps, MyState> {
             linkedTo: "link",
           },
         ],
+        responsive: {
+          rules: [
+            {
+              condition: {
+                maxWidth: 500,
+              },
+              chartOptions: {
+                legend: {
+                  align: "center",
+                  verticalAlign: "bottom",
+                  layout: "horizontal",
+                },
+              },
+            },
+          ],
+        },
       },
       hoverData: null,
     };
@@ -86,9 +105,6 @@ class Stock extends Component<MyProps, MyState> {
         } else {
           pointerToThis.setState({
             chartOptions: {
-              title: {
-                text: StockSymbol + " Stock Price",
-              },
               legend: {
                 enabled: true,
               },
@@ -118,30 +134,35 @@ class Stock extends Component<MyProps, MyState> {
 
   render() {
     const { chartOptions, exists, stockSymbol } = this.state;
-    return exists ? (
-      <div className="">
-        <HighchartsReact
-          highcharts={Highcharts}
-          constructorType={"stockChart"}
-          options={chartOptions}
-        />
-      </div>
-    ) : (
-      <div>
-        <div className="pt4 b light-purple f2-ns f3 tc pb1">
-          No stocks with the ticker symbol "{stockSymbol}" exist.
-        </div>
-        <div className="tc blue f4-ns f5">
-          You may have mistyped the symbol or this stock may not be available in
-          the database.
-        </div>
-
-        <style>{`
-            .Link:hover {
-                color: #fff;
+      return exists ? (
+        <div className="">
+          <div className="tc f2-ns f3 fw6 mb3 title-color">
+            {stockSymbol.toUpperCase() + " Price"}
+          </div>
+          <div className="">
+            <HighchartsReact
+              highcharts={Highcharts}
+              constructorType={"stockChart"}
+              options={chartOptions}
+            />
+          </div>
+          <style>{`
+            .title-color {
+                color: #022c39;
+            }
         `}</style>
-      </div>
-    );
+        </div>
+      ) : (
+        <div>
+          <div className="pt4 b light-purple f2-ns f3 tc pb1">
+            No stocks with the ticker symbol "{stockSymbol}" exist.
+          </div>
+          <div className="tc blue f4-ns f5">
+            You may have mistyped the symbol or this stock may not be available
+            in the database.
+          </div>
+        </div>
+      );
   }
 }
 function formatStockData(stockData: any[]) {

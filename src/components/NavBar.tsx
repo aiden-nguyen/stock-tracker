@@ -9,7 +9,10 @@ const NavBar = () => {
       <div className="topnav">
         <div className="flex flex-row mb3 pb3-ns pt2 pb2 mt3-ns mt2">
           <div className="items-center topnav-container fit">
-            <Link className="ml4-ns ml3 f2-ns f3 Link no-underline white" to="/">
+            <Link
+              className="ml4-ns ml3 f2-ns f3 Link no-underline white"
+              to="/"
+            >
               home
             </Link>
           </div>
@@ -17,20 +20,20 @@ const NavBar = () => {
       </div>
       <style jsx>{`
         .Link:hover {
-                color: #b3;
+          color: #9eebcf;
         }
         .fit {
           width: fit-content;
         }
         .topnav {
-          background-color: #022C39;
+          background-color: #022c39;
           transition: background-color 0.15s ease-in;
           overflow: hidden;
           position: fixed;
           top: 0;
           width: 100%;
           height: 75;
-          z-index: 1100; 
+          z-index: 1100;
         }
 
         .topnav-container {
@@ -47,7 +50,6 @@ const NavBar = () => {
           padding: 1rem 0;
           text-decoration: none;
         }
-
 
         .flex-fill {
           flex: 1 1;
