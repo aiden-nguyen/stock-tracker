@@ -2,7 +2,6 @@ import { mainModule } from "process";
 import React, { Component } from "react";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
-import { Link } from "react-router-dom";
 
 let indicators = require("highcharts/indicators/indicators");
 indicators(Highcharts);
@@ -74,7 +73,6 @@ class Stock extends Component<MyProps, MyState> {
     };
   }
 
-
   componentDidMount() {
     this.fetchStock();
   }
@@ -94,10 +92,6 @@ class Stock extends Component<MyProps, MyState> {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
-
-        console.log(formatStockData(data["Time Series (Daily)"]));
-
         if (formatStockData(data["Time Series (Daily)"]) === 0) {
           pointerToThis.setState({
             exists: false,
@@ -134,35 +128,35 @@ class Stock extends Component<MyProps, MyState> {
 
   render() {
     const { chartOptions, exists, stockSymbol } = this.state;
-      return exists ? (
+    return exists ? (
+      <div className="">
+        <div className="tc f2-ns f3 fw6 mb3 title-color">
+          {stockSymbol.toUpperCase() + " Price"}
+        </div>
         <div className="">
-          <div className="tc f2-ns f3 fw6 mb3 title-color">
-            {stockSymbol.toUpperCase() + " Price"}
-          </div>
-          <div className="">
-            <HighchartsReact
-              highcharts={Highcharts}
-              constructorType={"stockChart"}
-              options={chartOptions}
-            />
-          </div>
-          <style>{`
+          <HighchartsReact
+            highcharts={Highcharts}
+            constructorType={"stockChart"}
+            options={chartOptions}
+          />
+        </div>
+        <style>{`
             .title-color {
                 color: #022c39;
             }
         `}</style>
+      </div>
+    ) : (
+      <div>
+        <div className="pt4 b light-purple f2-ns f3 tc pb1">
+          No stocks with the ticker symbol "{stockSymbol}" exist.
         </div>
-      ) : (
-        <div>
-          <div className="pt4 b light-purple f2-ns f3 tc pb1">
-            No stocks with the ticker symbol "{stockSymbol}" exist.
-          </div>
-          <div className="tc blue f4-ns f5">
-            You may have mistyped the symbol or this stock may not be available
-            in the database.
-          </div>
+        <div className="mt2 tc blue f4-ns f5">
+          You may have mistyped the symbol or this stock may not be available in
+          the database.
         </div>
-      );
+      </div>
+    );
   }
 }
 function formatStockData(stockData: any[]) {

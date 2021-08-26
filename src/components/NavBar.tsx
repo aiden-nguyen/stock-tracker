@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
-
   return (
     <div>
       <div className="topnav">
@@ -53,8 +52,8 @@ const NavBar = () => {
 
         .flex-fill {
           flex: 1 1;
-          min-width: 0; /* 1 */
-          min-height: 0; /* 1 */
+          min-width: 0;
+          min-height: 0;
         }
 
         .trans-o {
@@ -68,4 +67,4 @@ const NavBar = () => {
 NavBar.defaultProps = { showBackground: false };
 
 NavBar.displayName = "NavBar";
-export default NavBar
+export default NavBar;

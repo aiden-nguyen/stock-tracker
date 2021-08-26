@@ -1,49 +1,41 @@
 import React from "react";
 import { useState } from "react";
-import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 
 const SearchBar = () => {
-  const [input, setInput] = useState('')
-  const history = useHistory()
-  const location = useLocation()
-  location.pathname = "/stock/"
-  
-  console.log(location)
- 
+  const [input, setInput] = useState("");
+  const history = useHistory();
 
   const handleSubmit = (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
     history.push("/stock/" + input);
   };
 
-  console.log(input);
-    return (
-      <div className="tc">
-        <form method="get">
-          <label htmlFor="header-search">
-            <span className="visually-hidden">Search stocks</span>
-          </label>
-          <input
-            className="f2-ns f3 h3-ns h2 pa3-ns"
-            onChange={(e: any) => {
+  return (
+    <div className="tc">
+      <form method="get">
+        <label htmlFor="header-search">
+          <span className="visually-hidden">Search stocks</span>
+        </label>
+        <input
+          className="f2-ns f3 h3-ns h2 pa3-ns"
+          onChange={(e: any) => {
+            e.preventDefault();
+            setInput(e.target.value);
+          }}
+          type="text"
+          id="header-search"
+          placeholder="enter a stock symbol"
+          name="s"
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
               e.preventDefault();
-              setInput(e.target.value);
-              location.search = e.target.value;
-            }}
-            type="text"
-            id="header-search"
-            placeholder="enter a stock symbol"
-            name="s"
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                handleSubmit(e);
-              }
-            }}
-          />
-        </form>
-        <style>{`
+              handleSubmit(e);
+            }
+          }}
+        />
+      </form>
+      <style>{`
           .visually-hidden {
             clip: rect(0 0 0 0);
             clip-path: inset(50%);
@@ -65,14 +57,12 @@ const SearchBar = () => {
     
           }
           input[type="text"]::placeholder { 
-                  
-                /* Firefox, Chrome, Opera */
                 text-align: center;
             }
     
         `}</style>
-      </div>
-    );
-}
+    </div>
+  );
+};
 
-export default SearchBar
+export default SearchBar;

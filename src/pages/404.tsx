@@ -1,17 +1,11 @@
 import React from "react";
-import { useHistory } from "react-router";
-import { useLocation } from "react-router";
-import NavBar from "../components/SearchBar";
 import { Link } from "react-router-dom";
 
 const NotFoundPage = () => {
   return (
     <div>
-          <div className="background">
-              
-        <div
-          className="tc pt7 pb7"
-        >
+      <div className="background">
+        <div className="tc pt7 pb7">
           <div className="b light-purple f2-ns f3">404 Not Found</div>
 
           <div className="mt3 blue f3-ns f4">
@@ -22,7 +16,7 @@ const NotFoundPage = () => {
         </div>
         <style>{`
             .Link:hover {
-                color: #357EDD;
+                color: #19A974;
         `}</style>
       </div>
       <style>{`

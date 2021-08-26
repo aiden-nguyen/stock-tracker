@@ -1,14 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router";
-import { useLocation } from "react-router";
 import SearchBar from "../components/SearchBar";
-import NavBar from "../components/NavBar";
 
 const HomePage = () => {
   return (
     <div>
       <div className="background">
-       
         <div
           style={{
             position: "absolute",
