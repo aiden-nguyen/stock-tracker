@@ -14,17 +14,15 @@ const SearchBar = () => {
   return (
     <div className="tc">
       <form method="get">
-        <label htmlFor="header-search">
-          <span className="visually-hidden">Search stocks</span>
-        </label>
         <input
-          className="f2-ns f3 h3-ns h2 pa3-ns"
+          autoComplete="off"
+          className="f2-ns f3"
           onChange={(e: any) => {
             e.preventDefault();
             setInput(e.target.value);
           }}
-          type="text"
-          id="header-search"
+          type="search"
+          id="search"
           placeholder="enter a stock symbol"
           name="s"
           onKeyPress={(e) => {
@@ -35,31 +33,85 @@ const SearchBar = () => {
           }}
         />
       </form>
-      <style>{`
-          .visually-hidden {
-            clip: rect(0 0 0 0);
-            clip-path: inset(50%);
-            height: 1px;
-            overflow: hidden;
-            position: absolute;
-            white-space: nowrap;
-            width: 1px;
-          }
-          input:focus, textarea:focus, select:focus {
-            outline: none;
-          }
-          input {
+      <style>{`     
+        #search {
+            padding: .5rem;
+            width: 95%;
+            background-color: transparent;
             border-top-style: hidden;
             border-right-style: hidden;
             border-left-style: hidden;
             border-bottom-style: groove;
-            background-color: #E8FDF5;
-    
-          }
-          input[type="text"]::placeholder { 
-                text-align: center;
-            }
-    
+            transition: translateX 6s ease-in;
+            margin-bottom: 15px;
+        }
+
+        #search:focus {
+            outline: none;
+            border-bottom-style: groove;
+        }
+
+        #search:focus::-webkit-input-placeholder {
+            -webkit-transform: translateX(70%);
+            transform: translateX(70%);
+            opacity: 0;
+        }
+
+        #search:focus::-webkit-input-placeholder:-moz-placeholder {
+            -webkit-transform: translateX(70%);
+            transform: translateX(70%);
+            opacity: 0;
+        }
+
+        #search:focus::-webkit-input-placeholder::-moz-placeholder {
+            -webkit-transform: translateX(70%);
+            transform: translateX(70%);
+            opacity: 0;
+        }
+
+        #search:focus::-webkit-input-placeholder:-ms-input-placeholder {
+            -webkit-transform: translateX(70%);
+            transform: translateX(70%);
+            opacity: 0;
+        }
+
+        #search:focus::-webkit-input-placeholder::-ms-input-placeholder {
+            -webkit-transform: translateX(70%);
+            transform: translateX(70%);
+            opacity: 0;
+        }
+
+        #search::-webkit-input-placeholder {
+            text-align: center;
+            -webkit-transition: ease-in 0.3s;
+            transition: ease-in 0.3s;
+            -webkit-transform-origin: 0 50%;
+            transform-origin: 0 50%;
+        }
+
+        #search:-moz-placeholder { 
+            -webkit-transition: ease-in 0.3s;
+            transition: ease-in 0.3s;
+            transform-origin: 0 50%;
+        }
+
+        #search::-moz-placeholder {
+            -webkit-transition: ease-in 0.3s;
+            transition: ease-in 0.3s;
+            transform-origin: 0 50%;
+        }
+
+        #search:-ms-input-placeholder {
+            -webkit-transition: ease-in 0.3s;
+            transition: ease-in 0.3s;
+            transform-origin: 0 50%;
+        }
+
+        #search::-ms-input-placeholder {
+            -webkit-transition: ease-in 0.3s;
+            transition: ease-in 0.3s;
+            transform-origin: 0 50%;
+        }
         `}</style>
     </div>
   );
