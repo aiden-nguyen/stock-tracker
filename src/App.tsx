@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import "./App.css";
-import SearchBar from "./components/SearchBar";
 import "tachyons";
-import Stock from "./components/Stock";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link,
   Redirect,
 } from "react-router-dom";
 import HomePage from "./pages";
